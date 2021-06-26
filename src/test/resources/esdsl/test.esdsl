@@ -1,0 +1,46 @@
+==> search
+GET /index/${fulltext}/_search
+{
+"query" : {
+#if(232!="rwerwe")
+"match" : {
+"id" :123133131223123212313131
+}
+#endif
+},
+"highlight" : {
+"pre_tags" : [
+"<tag1>", "<tag2>"
+],
+"post_tags" : [
+"</tag1>", "</tag2>"
+],
+"fields" : {
+"content" : #{content}
+}
+}
+}
+/**
+ * 注解
+ */
+==> search1
+GET /index/fulltext/_search?sfsf=fsdf&ssfsfs
+{
+"query" : { "match" : {
+"id" :#{sssss}   // 注解
+}},
+"highlight" : {
+"pre_tags" :
+#for(item in #{list} open='[' close=']' separator=',')
+#{item}
+#endfor
+,
+"post_tags" : [
+"</tag1>" , "</tag2>"
+],
+"fields" : {
+"content" : {
+}
+}
+}
+}
