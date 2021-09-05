@@ -1,10 +1,7 @@
 ==> search
 GET /index/${fulltext}/_search
-        {
-                "sss":"sss",
-                "ss":"ss",
-                "ss2333333"
-                        :
-                        {
-                                }
-                }
+{
+  "sss":"sss",
+  "ss":"ss",
+  "ss2333333":{}
+}

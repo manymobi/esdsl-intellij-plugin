@@ -63,8 +63,8 @@ public class EsdslJsonBlock extends AbstractBlock {
     @Override
     public Indent getIndent() {
 //        return Indent.getIndent(Indent.Type.NONE, spacesStart * 4, false, false);
-//        return Indent.getAbsoluteNoneIndent();
-        return null;
+        return Indent.getAbsoluteNoneIndent();
+//        return null;
     }
 
     @Nullable
