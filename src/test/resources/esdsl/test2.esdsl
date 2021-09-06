@@ -1,48 +1,48 @@
 ==> search
 GET /index/${fulltext}/_search
-   {
-     "query" : {
-                  #if(#{key}=="rwerwe")
-                    "match" : {
-                                 "id" :12313313122312321231313
+{
+  "query" : {
+               #if(#{key}=="rwerwe")
+                 "match" : {
+                              "id" :12313313122312321231313
+                            }
+               #endif
+             },
+  "highlight" : {
+                   "pre_tags" : [
+                                   "<tag1>", "<tag2>"
+                                 ],
+                   "post_tags" : [
+                                    "</tag1>", "</tag2>"],
+                   "fields" : {
+                                 "content" : #{content}
                                }
-                  #endif
-                },
-     "highlight" : {
-                      "pre_tags" : [
-                                      "<tag1>", "<tag2>"
-                                    ],
-                      "post_tags" : [
-                                       "</tag1>", "</tag2>"],
-                      "fields" : {
-                                    "content" : #{content}
-                                  }
-                    }
-   }
+                 }
+}
 ==> search1
 GET /index/${fulltext}/_search
-   {
-     "query": ${content}
-   }
+{
+  "query": ${content}
+}
 ==> search2
 GET /index/${fulltext}/_search
-   { "query": #{content} }
+{ "query": #{content} }
 ==> search3
 GET /index/${fulltext}/_search
-   {
-     "query" : { #if(#{key}!=null)
-                    "match" : {
-                                 "id" :#{key}
+{
+  "query" : { #if(#{key}!=null)
+                 "match" : {
+                              "id" :#{key}
+                            }
+               #endif
+             },
+  "highlight" : {
+                   "pre_tags" : [
+                                   "<tag1>", "<tag2>"],
+                   "post_tags" : [
+                                    "</tag1>", "</tag2>"],
+                   "fields" : {
+                                 "content" : #{content}
                                }
-                  #endif
-                },
-     "highlight" : {
-                      "pre_tags" : [
-                                      "<tag1>", "<tag2>"],
-                      "post_tags" : [
-                                       "</tag1>", "</tag2>"],
-                      "fields" : {
-                                    "content" : #{content}
-                                  }
-                    }
-   }
+                 }
+}

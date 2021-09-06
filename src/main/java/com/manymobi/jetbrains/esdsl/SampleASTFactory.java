@@ -4,8 +4,6 @@ import com.intellij.core.CoreASTFactory;
 import com.intellij.lang.ParserDefinition;
 import com.intellij.psi.impl.source.tree.CompositeElement;
 import com.intellij.psi.impl.source.tree.LeafElement;
-import com.intellij.psi.impl.source.tree.LeafPsiElement;
-import com.intellij.psi.impl.source.tree.PsiCoreCommentImpl;
 import com.intellij.psi.tree.IElementType;
 import com.manymobi.esdsl.antlr4.EsdslLexer;
 import com.manymobi.jetbrains.esdsl.psi.IdentifierPSINode;
@@ -30,10 +28,6 @@ public class SampleASTFactory extends CoreASTFactory {
 	    return super.createComposite(type);
     }
 
-	/** Create a parse tree (AST) leaf node from a token. Doubles as a PSI leaf node.
-	 *  Does not see whitespace tokens.  Default impl makes {@link LeafPsiElement}
-	 *  or {@link PsiCoreCommentImpl} depending on {@link ParserDefinition#getCommentTokens()}.
-	 */
 	@NotNull
 	@Override
 	public LeafElement createLeaf(@NotNull IElementType type, CharSequence text) {

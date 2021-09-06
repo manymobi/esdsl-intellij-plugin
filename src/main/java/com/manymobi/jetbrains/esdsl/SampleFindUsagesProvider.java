@@ -1,5 +1,6 @@
 package com.manymobi.jetbrains.esdsl;
 
+import com.intellij.lang.cacheBuilder.WordsScanner;
 import com.intellij.lang.findUsages.FindUsagesProvider;
 import com.intellij.psi.PsiElement;
 import com.manymobi.esdsl.antlr4.EsdslParser;
@@ -15,6 +16,12 @@ import org.jetbrains.annotations.Nullable;
  * 提供全局搜索
  */
 public class SampleFindUsagesProvider implements FindUsagesProvider {
+    @Nullable
+    @Override
+    public WordsScanner getWordsScanner() {
+        return null;
+    }
+
     /**
      * Is "find usages" meaningful for a kind of definition subtree?
      */

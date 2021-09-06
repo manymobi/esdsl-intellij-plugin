@@ -11,7 +11,6 @@ import com.intellij.psi.search.PsiShortNamesCache;
 import com.manymobi.jetbrains.esdsl.EsdslLanguage;
 import com.manymobi.jetbrains.esdsl.Icons;
 import org.antlr.intellij.adaptor.xpath.XPath;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -28,9 +27,8 @@ import java.util.stream.Collectors;
  * 从 java 文件中连接到 esdsl 文件中
  */
 public class JavaEsdslLineMarkerProvider extends RelatedItemLineMarkerProvider {
-
     @Override
-    protected void collectNavigationMarkers(@NotNull PsiElement element, @NotNull Collection<? super RelatedItemLineMarkerInfo<?>> result) {
+    protected void collectNavigationMarkers(PsiElement element, Collection<? super RelatedItemLineMarkerInfo> result) {
         if (!(element instanceof PsiClass)) {
             return;
         }
@@ -48,21 +46,23 @@ public class JavaEsdslLineMarkerProvider extends RelatedItemLineMarkerProvider {
                 .map(s -> s.substring(s.lastIndexOf("/") + 1))
                 .map(s -> PsiShortNamesCache.getInstance(element.getProject())
                         .getFilesByName(s))
-                .stream()
-                .flatMap(Arrays::stream)
-                .flatMap(psiFile ->
-                        XPath.findAll(EsdslLanguage.INSTANCE, psiFile, "/esdslarray/esdsl/ID").stream())
-                .forEach(psiElement -> {
-                    PsiMethod psiMethod = collect.get(psiElement.getText());
-                    if (psiMethod != null) {
-                        NavigationGutterIconBuilder<PsiElement> builder =
-                                NavigationGutterIconBuilder.create(Icons.SAMPLE_ICON)
-                                        .setAlignment(GutterIconRenderer.Alignment.CENTER)
-                                        .setTarget(psiElement);
-                        result.add(builder.createLineMarkerInfo(psiMethod.getNameIdentifier()));
-                    }
+                .ifPresent(psiFiles -> {
+                    Arrays.stream(psiFiles)
+                            .flatMap(psiFile ->
+                                    XPath.findAll(EsdslLanguage.INSTANCE, psiFile, "/esdslarray/esdsl/ID").stream())
+                            .forEach(psiElement -> {
+                                PsiMethod psiMethod = collect.get(psiElement.getText());
+                                if (psiMethod != null) {
+                                    NavigationGutterIconBuilder<PsiElement> builder =
+                                            NavigationGutterIconBuilder.create(Icons.SAMPLE_ICON)
+                                                    .setAlignment(GutterIconRenderer.Alignment.CENTER)
+                                                    .setTarget(psiElement);
+                                    result.add(builder.createLineMarkerInfo(psiMethod.getNameIdentifier()));
+                                }
 
+                            });
                 });
+
 
     }
 

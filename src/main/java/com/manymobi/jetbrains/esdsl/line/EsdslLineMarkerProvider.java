@@ -27,10 +27,8 @@ import java.util.Optional;
  * 从 esdsl 文件点击连接到 java 文件
  */
 public class EsdslLineMarkerProvider extends RelatedItemLineMarkerProvider {
-
-
     @Override
-    protected void collectNavigationMarkers(@NotNull PsiElement element, @NotNull Collection<? super RelatedItemLineMarkerInfo<?>> result) {
+    protected void collectNavigationMarkers(PsiElement element, Collection<? super RelatedItemLineMarkerInfo> result) {
         if (!(element instanceof FunctionSubtree)) {
             return;
         }
