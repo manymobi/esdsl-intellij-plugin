@@ -1,5 +1,5 @@
 <idea-plugin>
-	<id>org.manymobi.jetbrains.esdsl</id>
+	<id>com.manymobi.jetbrains.esdsl</id>
 	<name>Esdsl</name>
 	<vendor email="631583871@qq.com" url="https://github.com/manymobi/esdsl-jetbrains-plugin">
 		Esdsl Jetbrains Plugin
