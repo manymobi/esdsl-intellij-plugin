@@ -28,11 +28,18 @@ intellij {
 //    plugins = ['java']
 }
 
+def getIdeaToken() {
+    return hasProperty("ideaPluginsToken") ? property("ideaPluginsToken") : ""
+}
 
-patchPluginXml{
+publishPlugin {
+    token = getIdeaToken()
+}
+
+patchPluginXml {
     sinceBuild = '191'
     untilBuild = ''
 }
 
-sourceCompatibility='1.8'
-targetCompatibility='1.8'
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
