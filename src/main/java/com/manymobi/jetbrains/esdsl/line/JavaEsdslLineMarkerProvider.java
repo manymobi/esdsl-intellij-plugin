@@ -14,6 +14,7 @@ import org.antlr.intellij.adaptor.xpath.XPath;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -35,9 +36,6 @@ public class JavaEsdslLineMarkerProvider extends RelatedItemLineMarkerProvider {
 
         PsiClass psiClass = (PsiClass) element;
 
-        PsiMethod[] methods = psiClass.getMethods();
-        Map<String, PsiMethod> collect = Arrays.stream(methods)
-                .collect(Collectors.toMap(PsiMethod::getName, o -> o));
         Optional.of(psiClass)
                 .map(psiClass1 -> psiClass1.getAnnotation("com.manymobi.esdsl.annotations.Mapper"))
                 .map(psiAnnotation -> psiAnnotation.findAttributeValue("value"))
@@ -47,17 +45,27 @@ public class JavaEsdslLineMarkerProvider extends RelatedItemLineMarkerProvider {
                 .map(s -> PsiShortNamesCache.getInstance(element.getProject())
                         .getFilesByName(s))
                 .ifPresent(psiFiles -> {
+                    PsiMethod[] methods = psiClass.getMethods();
+                    Map<String, List<PsiMethod>> collect = Arrays.stream(methods)
+                            .collect(Collectors.toMap(PsiMethod::getName, Arrays::asList,
+                                    (t, t2) -> {
+                                        t.addAll(t2);
+                                        return t;
+                                    }));
                     Arrays.stream(psiFiles)
                             .flatMap(psiFile ->
                                     XPath.findAll(EsdslLanguage.INSTANCE, psiFile, "/esdslarray/esdsl/ID").stream())
                             .forEach(psiElement -> {
-                                PsiMethod psiMethod = collect.get(psiElement.getText());
-                                if (psiMethod != null) {
-                                    NavigationGutterIconBuilder<PsiElement> builder =
-                                            NavigationGutterIconBuilder.create(Icons.SAMPLE_ICON)
-                                                    .setAlignment(GutterIconRenderer.Alignment.CENTER)
-                                                    .setTarget(psiElement);
-                                    result.add(builder.createLineMarkerInfo(psiMethod.getNameIdentifier()));
+                                List<PsiMethod> psiMethods = collect.get(psiElement.getText());
+                                if (psiMethods != null) {
+                                    for (PsiMethod psiMethod : psiMethods) {
+
+                                        NavigationGutterIconBuilder<PsiElement> builder =
+                                                NavigationGutterIconBuilder.create(Icons.SAMPLE_ICON)
+                                                        .setAlignment(GutterIconRenderer.Alignment.CENTER)
+                                                        .setTarget(psiElement);
+                                        result.add(builder.createLineMarkerInfo(psiMethod.getNameIdentifier()));
+                                    }
                                 }
 
                             });
