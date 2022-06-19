@@ -33,7 +33,12 @@
 	</actions>
 	
 	<extensions defaultExtensionNs="com.intellij">
-		<fileTypeFactory implementation="com.manymobi.jetbrains.esdsl.EsdslFileTypeFactory"/>
+		<fileType
+				name="Esdsl file"
+				implementationClass="com.manymobi.jetbrains.esdsl.EsdslFileType"
+				fieldName="INSTANCE"
+				language="Esdsl"
+				extensions="esdsl"/>
 		<lang.syntaxHighlighterFactory language="Esdsl"
 		                               implementationClass="com.manymobi.jetbrains.esdsl.EsdslSyntaxHighlighterFactory"/>
 		

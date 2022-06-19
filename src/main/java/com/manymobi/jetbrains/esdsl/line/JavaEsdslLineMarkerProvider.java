@@ -11,6 +11,7 @@ import com.intellij.psi.search.PsiShortNamesCache;
 import com.manymobi.jetbrains.esdsl.EsdslLanguage;
 import com.manymobi.jetbrains.esdsl.Icons;
 import org.antlr.intellij.adaptor.xpath.XPath;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -29,7 +30,7 @@ import java.util.stream.Collectors;
  */
 public class JavaEsdslLineMarkerProvider extends RelatedItemLineMarkerProvider {
     @Override
-    protected void collectNavigationMarkers(PsiElement element, Collection<? super RelatedItemLineMarkerInfo> result) {
+    protected void collectNavigationMarkers(@NotNull PsiElement element, @NotNull Collection<? super RelatedItemLineMarkerInfo<?>> result) {
         if (!(element instanceof PsiClass)) {
             return;
         }

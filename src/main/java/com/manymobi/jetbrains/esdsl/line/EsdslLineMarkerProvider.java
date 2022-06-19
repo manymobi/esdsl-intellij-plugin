@@ -28,7 +28,7 @@ import java.util.Optional;
  */
 public class EsdslLineMarkerProvider extends RelatedItemLineMarkerProvider {
     @Override
-    protected void collectNavigationMarkers(PsiElement element, Collection<? super RelatedItemLineMarkerInfo> result) {
+    protected void collectNavigationMarkers(@NotNull PsiElement element, @NotNull Collection<? super RelatedItemLineMarkerInfo<?>> result) {
         if (!(element instanceof FunctionSubtree)) {
             return;
         }

@@ -1,5 +1,6 @@
 package com.manymobi.jetbrains.esdsl.formatting;
 
+import com.intellij.formatting.FormattingContext;
 import com.intellij.formatting.FormattingModel;
 import com.intellij.formatting.FormattingModelBuilder;
 import com.intellij.formatting.FormattingModelProvider;
@@ -17,9 +18,19 @@ import org.jetbrains.annotations.NotNull;
 public class EsdslFormattingModelBuilder implements FormattingModelBuilder {
 
 
-    @NotNull
+//    @NotNull
+//    @Override
+//    public FormattingModel createModel(PsiElement element, CodeStyleSettings settings) {
+//        return FormattingModelProvider
+//                .createFormattingModelForPsiFile(element.getContainingFile(),
+//                        new EsdslBlockFactory(settings).createBlock(element.getNode()),
+//                        settings);
+//    }
+
     @Override
-    public FormattingModel createModel(PsiElement element, CodeStyleSettings settings) {
+    public @NotNull FormattingModel createModel(@NotNull FormattingContext formattingContext) {
+        CodeStyleSettings settings = formattingContext.getCodeStyleSettings();
+        PsiElement element = formattingContext.getPsiElement();
         return FormattingModelProvider
                 .createFormattingModelForPsiFile(element.getContainingFile(),
                         new EsdslBlockFactory(settings).createBlock(element.getNode()),

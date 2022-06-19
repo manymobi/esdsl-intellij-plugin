@@ -5,7 +5,7 @@ buildscript {
 }
 plugins {
     id 'java'
-    id "org.jetbrains.intellij" version "1.1.6"
+    id "org.jetbrains.intellij" version "1.6.0"
 }
 
 group 'com.manymobi'
@@ -13,7 +13,6 @@ version pluginVersion
 
 
 repositories {
-    mavenLocal()
     mavenCentral()
 }
 
@@ -25,21 +24,26 @@ dependencies {
 
 intellij {
     version = ideaVersion
-//    plugins = ['java']
+    plugins = ["com.intellij.java"]
 }
 
 def getIdeaToken() {
     return hasProperty("ideaPluginsToken") ? property("ideaPluginsToken") : ""
 }
 
-publishPlugin {
-    token = getIdeaToken()
-}
+tasks {
+    publishPlugin {
+        token = getIdeaToken()
+    }
 
-patchPluginXml {
-    sinceBuild = '191'
-    untilBuild = ''
+    buildSearchableOptions {
+        enabled = false
+    }
+    patchPluginXml {
+        sinceBuild = '203'
+        untilBuild = ''
+    }
 }
-
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+}
