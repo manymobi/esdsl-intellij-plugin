@@ -5,9 +5,15 @@
 		Esdsl Jetbrains Plugin
 	</vendor>
 	
-	<description><![CDATA[
-  <p>Esdsl plugin</p>
-
+	<description><![CDATA[<p>Simple plugin for Esdsl language with syntax highlighter. Just turn plugin on. file show icons.Esdsl files and highlight your code (comments, names, constants, etc).You may set custom colors in preferences tab</p>
+  <p></p>
+  <p>Esdsl plugin provides support for esdsl files features:
+  <ul>
+      <li>Esdsl syntax check</li>
+      <li>Esdsl syntax highlighter</li>
+      <li>mapper and esdsl can jump back and forth</li>
+    </ul>
+  </p>
 <p>
 <a href="https://github.com/manymobi/esdsl-jetbrains-plugin">Github source</a>
 <a href="https://github.com/manymobi/esdsl-core">Esdsl</a>
