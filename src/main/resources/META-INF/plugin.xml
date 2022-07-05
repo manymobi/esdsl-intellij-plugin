@@ -40,7 +40,7 @@
 	
 	<extensions defaultExtensionNs="com.intellij">
 		<fileType
-				name="Esdsl file"
+				name="Esdsl"
 				implementationClass="com.manymobi.intellij.esdsl.EsdslFileType"
 				fieldName="INSTANCE"
 				language="Esdsl"
