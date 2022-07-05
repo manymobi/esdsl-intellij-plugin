@@ -1,8 +1,8 @@
 <idea-plugin>
-	<id>com.manymobi.jetbrains.esdsl</id>
+	<id>com.manymobi.intellij.esdsl</id>
 	<name>Esdsl</name>
-	<vendor email="631583871@qq.com" url="https://github.com/manymobi/esdsl-jetbrains-plugin">
-		Esdsl Jetbrains Plugin
+	<vendor email="631583871@qq.com" url="https://github.com/manymobi/esdsl-intellij-plugin">
+		Esdsl IntelliJ Plugin
 	</vendor>
 	
 	<description><![CDATA[<p>Simple plugin for Esdsl language with syntax highlighter. Just turn plugin on. file show icons.Esdsl files and highlight your code (comments, names, constants, etc).You may set custom colors in preferences tab</p>
@@ -15,7 +15,7 @@
     </ul>
   </p>
 <p>
-<a href="https://github.com/manymobi/esdsl-jetbrains-plugin">Github source</a>
+<a href="https://github.com/manymobi/esdsl-intellij-plugin">Github source</a>
 <a href="https://github.com/manymobi/esdsl-core">Esdsl</a>
 <a href="https://github.com/manymobi/esdsl-spring">Esdsl Spring</a>
   ]]></description>
@@ -41,38 +41,38 @@
 	<extensions defaultExtensionNs="com.intellij">
 		<fileType
 				name="Esdsl file"
-				implementationClass="com.manymobi.jetbrains.esdsl.EsdslFileType"
+				implementationClass="com.manymobi.intellij.esdsl.EsdslFileType"
 				fieldName="INSTANCE"
 				language="Esdsl"
 				extensions="esdsl"/>
 		<lang.syntaxHighlighterFactory language="Esdsl"
-		                               implementationClass="com.manymobi.jetbrains.esdsl.EsdslSyntaxHighlighterFactory"/>
+		                               implementationClass="com.manymobi.intellij.esdsl.EsdslSyntaxHighlighterFactory"/>
 		
 		<lang.parserDefinition language="Esdsl"
-		                       implementationClass="com.manymobi.jetbrains.esdsl.EsdslParserDefinition"/>
-		<lang.ast.factory language="Esdsl" implementationClass="com.manymobi.jetbrains.esdsl.SampleASTFactory"/>
+		                       implementationClass="com.manymobi.intellij.esdsl.EsdslParserDefinition"/>
+		<lang.ast.factory language="Esdsl" implementationClass="com.manymobi.intellij.esdsl.SampleASTFactory"/>
 		
 		<lang.psiStructureViewFactory language="Esdsl"
-		                              implementationClass="com.manymobi.jetbrains.esdsl.structview.EsdslStructureViewFactory"/>
+		                              implementationClass="com.manymobi.intellij.esdsl.structview.EsdslStructureViewFactory"/>
 		
-		<colorSettingsPage implementation="com.manymobi.jetbrains.esdsl.EsdslColorSettingsPage"/>
+		<colorSettingsPage implementation="com.manymobi.intellij.esdsl.EsdslColorSettingsPage"/>
 		
-		<!--		<externalAnnotator language="Esdsl" implementationClass="com.manymobi.jetbrains.esdsl.SampleExternalAnnotator"/>-->
+		<!--		<externalAnnotator language="Esdsl" implementationClass="com.manymobi.intellij.esdsl.SampleExternalAnnotator"/>-->
 		
 		<!--		<lang.findUsagesProvider language="Esdsl"-->
-		<!--		                         implementationClass="com.manymobi.jetbrains.esdsl.SampleFindUsagesProvider"/>-->
-		<lang.commenter language="Esdsl" implementationClass="com.manymobi.jetbrains.esdsl.EsdslCommenter"/>
+		<!--		                         implementationClass="SampleFindUsagesProvider"/>-->
+		<lang.commenter language="Esdsl" implementationClass="com.manymobi.intellij.esdsl.EsdslCommenter"/>
 		<lang.braceMatcher language="Esdsl"
-		                   implementationClass="com.manymobi.jetbrains.esdsl.EsdslPairedBraceMatcher"/>
+		                   implementationClass="com.manymobi.intellij.esdsl.EsdslPairedBraceMatcher"/>
 		<!--		方法连接-->
 		<codeInsight.lineMarkerProvider language="JAVA"
-		                                implementationClass="com.manymobi.jetbrains.esdsl.line.JavaEsdslLineMarkerProvider"/>
+		                                implementationClass="com.manymobi.intellij.esdsl.line.JavaEsdslLineMarkerProvider"/>
 		<codeInsight.lineMarkerProvider language="Esdsl"
-		                                implementationClass="com.manymobi.jetbrains.esdsl.line.EsdslLineMarkerProvider"/>
+		                                implementationClass="com.manymobi.intellij.esdsl.line.EsdslLineMarkerProvider"/>
 		<!--		代码格式化-->
 		<!--		<lang.formatter language="Esdsl"-->
-		<!--		                implementationClass="com.manymobi.jetbrains.esdsl.formatting.EsdslFormattingModelBuilder"/>-->
-		<!--		<codeStyleSettingsProvider implementation="com.manymobi.jetbrains.esdsl.formatting.EsdslCodeStyleSettingsProvider"/>-->
-		<!--		<langCodeStyleSettingsProvider implementation="com.manymobi.jetbrains.esdsl.formatting.EsdslLanguageCodeStyleSettingsProvider"/>-->
+		<!--		                implementationClass="EsdslFormattingModelBuilder"/>-->
+		<!--		<codeStyleSettingsProvider implementation="EsdslCodeStyleSettingsProvider"/>-->
+		<!--		<langCodeStyleSettingsProvider implementation="EsdslLanguageCodeStyleSettingsProvider"/>-->
 	</extensions>
 </idea-plugin>
